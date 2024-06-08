@@ -101,7 +101,7 @@ public class DatabaseSongRepository implements SongRepository {
         }
     }
 
-    private boolean getIdFromDB() {
+    private void getIdFromDB() {
         try (PreparedStatement stmt = connect.prepareStatement("SELECT MAX(songId) FROM song")) {
             ResultSet rs = stmt.executeQuery();
             rs.next();
@@ -112,10 +112,8 @@ public class DatabaseSongRepository implements SongRepository {
             nextSongId = Long.parseLong(maxId.substring(1));
             ++nextSongId;
             }
-            return true;
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
         }
     }
 }

@@ -169,7 +169,7 @@ public class DatabasePlaylistRepository implements PlaylistRepository {
         }
     }
 
-    private boolean getIdFromDB() {
+    private void getIdFromDB() {
         try (PreparedStatement stmt = connect.prepareStatement("SELECT MAX(playlistId) FROM playlist")) {
             ResultSet rs = stmt.executeQuery();
             rs.next();
@@ -180,10 +180,8 @@ public class DatabasePlaylistRepository implements PlaylistRepository {
                 nextPlaylistId = Long.parseLong(maxId.substring(1));
                 ++nextPlaylistId;
             }
-            return true;
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
         }
     }
 }

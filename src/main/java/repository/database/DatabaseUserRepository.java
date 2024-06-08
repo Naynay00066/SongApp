@@ -81,7 +81,7 @@ public class DatabaseUserRepository implements UserRepository {
         }
     }
 
-    private boolean getIdFromDB() {
+    private void getIdFromDB() {
         try (PreparedStatement stmt = connect.prepareStatement("SELECT MAX(userId) FROM user")) {
             ResultSet rs = stmt.executeQuery();
             rs.next();
@@ -92,10 +92,8 @@ public class DatabaseUserRepository implements UserRepository {
             nextUserId = Long.parseLong(maxId.substring(1));
             ++nextUserId;
             }
-            return true;
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
         }
     }
 }
