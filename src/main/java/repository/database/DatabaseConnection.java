@@ -10,7 +10,6 @@ public class DatabaseConnection {
         String password = "Cabbagesoup_2548";
         Connection connect = null;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
             connect = DriverManager.getConnection(url, username, password);
         } catch (Exception e) {
             e.printStackTrace();
